@@ -1,9 +1,6 @@
 package com.project.inv.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "role")
@@ -14,10 +11,19 @@ public class Role extends BaseTimeEntity{
     private String roleId;
 
     @Column(name = "description")
-    private String descriptiom;
+    private String description;
 
     @Column(name = "name")
     private String name;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "created_by", updatable = false)
+    private User createdBy;
+
+    // Stores the user who last updated the record
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "updated_by")
+    private User updatedBy;
 
     public String getRoleId() {
         return roleId;
@@ -27,12 +33,12 @@ public class Role extends BaseTimeEntity{
         this.roleId = roleId;
     }
 
-    public String getDescriptiom() {
-        return descriptiom;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescriptiom(String descriptiom) {
-        this.descriptiom = descriptiom;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getName() {
