@@ -20,7 +20,6 @@ public class Role extends BaseTimeEntity{
     @JoinColumn(name = "created_by", updatable = false)
     private User createdBy;
 
-    // Stores the user who last updated the record
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "updated_by")
     private User updatedBy;
