@@ -2,6 +2,8 @@ package com.imspos.auth_service.security.JWT;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.imspos.auth_service.payload.response.ApiErrorResponse;
+import com.imspos.auth_service.security.UserPrincipal;
+import com.imspos.auth_service.service.AuthService;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;

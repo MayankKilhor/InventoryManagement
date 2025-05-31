@@ -62,13 +62,11 @@ public class SecurityConfig {
 
 
     private static final String[] AUTH_WHITELIST = {
-            "/api/contact/submit",
-            "/api/auth/sendOtp",
-            "/api/auth/verifyOtp",
-            "/api/auth/signUp",
-            "/api/auth/login",
-            "/api/authorities/create-god-user",
-            "/hello"
+
+            "/auth/signUp",
+            "/auth/login",
+            "/auth/authorities/create-god-user",
+            "/auh/hello"
     };
 
     private static final String[] ROLE_WHITELIST = {
@@ -99,7 +97,8 @@ public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Excepti
             .authorizeHttpRequests(auth -> {
                 auth.requestMatchers(AUTH_WHITELIST).permitAll();
                 auth.requestMatchers(ROLE_WHITELIST).hasAuthority(ADD_ROLE_AUTHORITY);
-                auth.requestMatchers("/api/authorities/defaultConfiguration").permitAll();
+                auth.requestMatchers("/auth/authorities/defaultConfiguration").permitAll();
+                auth.requestMatchers("/**").permitAll();
                 auth.requestMatchers(HttpMethod.PATCH, "/**").denyAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/**").denyAll()
                         .requestMatchers(HttpMethod.TRACE, "/**").denyAll()

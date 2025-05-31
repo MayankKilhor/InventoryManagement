@@ -1,7 +1,7 @@
 package com.imspos.auth_service.security.Handler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.spaceage.logistics.Payload.Response.ApiErrorResponse;
+import com.imspos.auth_service.payload.response.ApiErrorResponse;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

@@ -1,6 +1,7 @@
 package com.imspos.auth_service.security;
 
-import com.spaceage.logistics.Model.Security.User;
+
+import com.imspos.auth_service.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
