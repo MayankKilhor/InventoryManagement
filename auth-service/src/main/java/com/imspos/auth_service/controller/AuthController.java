@@ -13,6 +13,7 @@ import com.imspos.auth_service.repository.UserRepository;
 import com.imspos.auth_service.security.JWT.JwtUtil;
 import com.imspos.auth_service.security.UserPrincipal;
 import com.imspos.auth_service.service.AuthService;
+import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.apache.logging.log4j.LogManager;
@@ -25,6 +26,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/auth")
@@ -216,6 +219,26 @@ public class AuthController {
 
             logger.error("Failed to update the profile image, Error:- "+e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+        }
+    }
+
+    @GetMapping("/validate")
+    public ResponseEntity<?> validateToken(@RequestHeader("Authorization") String authHeader) {
+        try {
+            // Extract token from Bearer <token>
+            String token = authHeader.startsWith("Bearer ") ? authHeader.substring(7) : authHeader;
+
+            // Validate and extract claims
+            Claims claims = jwtUtil.extractAllClaims(token);
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("valid", true);
+            response.put("claims", claims);
+
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(Map.of("valid", false, "error", e.getMessage()));
         }
     }
 
