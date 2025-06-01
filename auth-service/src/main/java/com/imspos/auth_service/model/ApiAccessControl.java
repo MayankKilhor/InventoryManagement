@@ -1,11 +1,15 @@
 package com.imspos.auth_service.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Set;
 
 @Entity
 @Table(name = "api_access_control")
+@Getter
+@Setter
 public class ApiAccessControl {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,36 +30,4 @@ public class ApiAccessControl {
     @Column(name = "public")
     private Boolean isPublic  = Boolean.FALSE;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getEndpointPath() {
-        return endpointPath;
-    }
-
-    public void setEndpointPath(String endpointPath) {
-        this.endpointPath = endpointPath;
-    }
-
-
-    public Set<Authority> getAuthorities() {
-        return authorities;
-    }
-
-    public void setAuthorities(Set<Authority> authorities) {
-        this.authorities = authorities;
-    }
-
-    public Boolean getPublic() {
-        return isPublic;
-    }
-
-    public void setPublic(Boolean aPublic) {
-        isPublic = aPublic;
-    }
 }

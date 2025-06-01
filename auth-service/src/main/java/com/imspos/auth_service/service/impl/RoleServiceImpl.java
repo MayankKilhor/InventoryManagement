@@ -165,14 +165,14 @@ public class RoleServiceImpl implements RoleService {
         if (existingAccessControl.isPresent()) {
             // If the endpoint already exists, update it
             apiAccessControl = existingAccessControl.get();
-            apiAccessControl.setPublic(isPublic);  // Update public status
+            apiAccessControl.setIsPublic(isPublic);  // Update public status
             // Clear existing authorities and update with new ones
             apiAccessControl.getAuthorities().clear();
         } else {
             // Create a new ApiAccessControl if it doesn't exist
             apiAccessControl = new ApiAccessControl();
             apiAccessControl.setEndpointPath(endpointPath);
-            apiAccessControl.setPublic(isPublic);
+            apiAccessControl.setIsPublic(isPublic);
         }
         if(!authorityNames.isEmpty()) {
             // Fetch authorities by their names and assign them to ApiAccessControl
