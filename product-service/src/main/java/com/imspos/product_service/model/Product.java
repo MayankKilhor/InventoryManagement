@@ -10,7 +10,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Product extends TimeEntity {
+public class Product extends TimeAndAuditEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

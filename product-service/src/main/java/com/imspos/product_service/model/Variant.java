@@ -9,7 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Variant extends TimeEntity {
+public class Variant extends TimeAndAuditEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
