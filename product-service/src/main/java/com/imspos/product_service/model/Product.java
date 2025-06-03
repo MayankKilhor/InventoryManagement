@@ -14,18 +14,20 @@ public class Product extends TimeAndAuditEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "product_id")
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "product_name", nullable = false)
     private String name;
 
+    @Column(name = "description")
     private String description;
 
+    @Column(name = "brand")
     private String brand;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "category_id") // Foreign key column
     private Category category;
-
 
 }

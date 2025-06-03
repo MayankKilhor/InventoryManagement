@@ -12,5 +12,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AuditableUser {
     private String userId;
-    private String name;
+    private String username;
 }
