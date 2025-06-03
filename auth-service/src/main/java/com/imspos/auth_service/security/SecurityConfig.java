@@ -98,7 +98,16 @@ public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Excepti
                 auth.requestMatchers(AUTH_WHITELIST).permitAll();
                 auth.requestMatchers(ROLE_WHITELIST).hasAuthority(ADD_ROLE_AUTHORITY);
                 auth.requestMatchers("/auth/authorities/defaultConfiguration").permitAll();
-                auth.requestMatchers("/**").permitAll();
+                auth.requestMatchers(
+                        "/swagger-ui/**",
+                        "/swagger-ui.html",
+                        "/v3/api-docs/**",
+                        "/v3/api-docs",
+                        "/swagger-resources/**",
+                        "/configuration/ui",
+                        "/configuration/security",
+                        "/webjars/**"
+                ).permitAll();
                 auth.requestMatchers(HttpMethod.PATCH, "/**").denyAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/**").denyAll()
                         .requestMatchers(HttpMethod.TRACE, "/**").denyAll()
@@ -114,7 +123,7 @@ public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Excepti
         List<String> publicEndpoints = new ArrayList<>();
 
         for (ApiAccessControl apiAccess : apiAccessList) {
-            if (Boolean.TRUE.equals(apiAccess.getPublic())) {
+            if (Boolean.TRUE.equals(apiAccess.getIsPublic())) {
                 publicEndpoints.add(apiAccess.getEndpointPath());
             } else if (apiAccess.getAuthorities() != null && !apiAccess.getAuthorities().isEmpty()) {
                 Set<String> authorityNames = apiAccess.getAuthorities().stream()
