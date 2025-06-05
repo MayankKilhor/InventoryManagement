@@ -874,3 +874,18 @@ Add a spring.config.import=configserver: property to your configuration.
 2025-06-04T00:17:58.901+05:30 DEBUG 49315 --- [auth-service] [http-nio-8082-exec-7] c.i.a.security.CustomHeaderFilter        : Excluding path from header validation: /v3/api-docs/swagger-config
 2025-06-04T00:17:58.932+05:30 DEBUG 49315 --- [auth-service] [http-nio-8082-exec-9] c.i.a.security.CustomHeaderFilter        : Excluding path from header validation: /v3/api-docs
 2025-06-04T00:17:59.033+05:30  INFO 49315 --- [auth-service] [http-nio-8082-exec-9] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 94 ms
+2025-06-04T00:22:27.570+05:30  INFO 49315 --- [auth-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-06-04T00:25:42.626+05:30  WARN 49315 --- [auth-service] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m46s58ms).
+2025-06-04T00:26:13.498+05:30  INFO 49315 --- [auth-service] [SpringApplicationShutdownHook] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application AUTH-SERVICE with eureka with status DOWN
+2025-06-04T00:26:13.498+05:30  INFO 49315 --- [auth-service] [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1748976973498, current=DOWN, previous=UP]
+2025-06-04T00:26:13.498+05:30  INFO 49315 --- [auth-service] [DiscoveryClient-InstanceInfoReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_AUTH-SERVICE/192.168.1.22:auth-service:8082: registering service...
+2025-06-04T00:26:13.503+05:30  INFO 49315 --- [auth-service] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-04T00:26:13.503+05:30  INFO 49315 --- [auth-service] [DiscoveryClient-InstanceInfoReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_AUTH-SERVICE/192.168.1.22:auth-service:8082 - registration status: 204
+2025-06-04T00:26:15.513+05:30  INFO 49315 --- [auth-service] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-06-04T00:26:15.529+05:30  INFO 49315 --- [auth-service] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-04T00:26:15.537+05:30  INFO 49315 --- [auth-service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-06-04T00:26:15.539+05:30  INFO 49315 --- [auth-service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-06-04T00:26:15.540+05:30  INFO 49315 --- [auth-service] [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+2025-06-04T00:26:18.545+05:30  INFO 49315 --- [auth-service] [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Unregistering ...
+2025-06-04T00:26:18.554+05:30  INFO 49315 --- [auth-service] [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_AUTH-SERVICE/192.168.1.22:auth-service:8082 - deregister  status: 200
+2025-06-04T00:26:18.555+05:30  INFO 49315 --- [auth-service] [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
