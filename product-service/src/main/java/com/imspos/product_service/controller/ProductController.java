@@ -47,4 +47,6 @@ public class ProductController {
     }
 
     //TODO create api for product and variant
+
+    //TODO connect with openfeign
 }
