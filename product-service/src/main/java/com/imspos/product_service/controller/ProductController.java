@@ -2,8 +2,10 @@ package com.imspos.product_service.controller;
 
 
 import com.imspos.product_service.model.Category;
+import com.imspos.product_service.model.Variant;
 import com.imspos.product_service.payload.dto.AuditableUser;
 import com.imspos.product_service.payload.request.CreateCategoryRequest;
+import com.imspos.product_service.payload.request.CreateVariantRequest;
 import com.imspos.product_service.payload.response.ApiErrorResponse;
 import com.imspos.product_service.payload.response.ApiResponse;
 import com.imspos.product_service.service.ProductService;
@@ -46,7 +48,30 @@ public class ProductController {
         }
     }
 
-    //TODO create api for product and variant
+
+    @PostMapping("/createVariant")
+    public ResponseEntity<?> createVariant(
+            @Valid @RequestBody CreateVariantRequest createVariantRequest,
+            @RequestHeader("x-user-id") String userId,
+            @RequestHeader("x-username") String username) {
+        try {
+            AuditableUser user = new AuditableUser(userId, username);
+
+            Variant created = productService.createVariant(createVariantRequest, user);
+
+            ApiResponse response = new ApiResponse(true, "Variant created successfully", null);
+            response.addDetail("variantId", created.getId());
+            response.addDetail("sku", created.getSku());
+
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+
+        } catch (Exception e) {
+            ApiErrorResponse errorResponse = new ApiErrorResponse(false, "Failed to create Variant!");
+            errorResponse.addDetail("error", e.getMessage());
+
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+        }
+    }
 
     //TODO connect with openfeign
 }
