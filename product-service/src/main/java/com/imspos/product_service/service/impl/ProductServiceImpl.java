@@ -5,6 +5,7 @@ import com.imspos.product_service.model.Product;
 import com.imspos.product_service.model.Variant;
 import com.imspos.product_service.payload.dto.AuditableUser;
 import com.imspos.product_service.payload.request.CreateCategoryRequest;
+import com.imspos.product_service.payload.request.CreateProductRequest;
 import com.imspos.product_service.payload.request.CreateVariantRequest;
 import com.imspos.product_service.repository.CategoryRepository;
 import com.imspos.product_service.repository.ProductRepository;
@@ -62,4 +63,24 @@ public class ProductServiceImpl implements ProductService {
 
         return variant;
     }
+
+    public Product createProduct(CreateProductRequest createProductRequest, AuditableUser user) {
+        Category category = categoryRepository.findById(createProductRequest.getCategoryId())
+                .orElseThrow(() -> new RuntimeException("Category not found with ID: " + createProductRequest.getCategoryId()));
+
+        Product product = Product.builder()
+                .name(createProductRequest.getName())
+                .description(createProductRequest.getDescription())
+                .brand(createProductRequest.getBrand())
+                .category(category)
+                .build();
+
+        product.setCreatedBy(user);
+        product.setUpdatedBy(user);
+
+        return productRepository.save(product);
+    }
+
+
+
 }
