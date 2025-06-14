@@ -24,6 +24,7 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    //TODO make ControllerAdvice and remove catch
     @PostMapping("/createCategory")
     public ResponseEntity<?> createCategory(@Valid @RequestBody CreateCategoryRequest createCategoryRequest, @RequestHeader("x-user-id") String userId, @RequestHeader("x-username") String username ){
         try{
