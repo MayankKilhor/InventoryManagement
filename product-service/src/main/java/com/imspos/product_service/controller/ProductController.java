@@ -38,11 +38,6 @@ public class ProductController {
             response.addDetail("name", created.getName());
 
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
-//        }catch(BadRequestException  e){
-//
-//            ApiErrorResponse errorResponse = new ApiErrorResponse(false,"Failed to create Category!");
-//            errorResponse.addDetail("error",e.getMessage());
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
         }catch(Exception e){
 
             ApiErrorResponse errorResponse = new ApiErrorResponse(false,"Failed to create Category!");
