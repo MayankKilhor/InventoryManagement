@@ -96,4 +96,6 @@ public class ProductController {
     }
 
     //TODO connect with openfeign
+
+    //TODO get started with docker
 }
