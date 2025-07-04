@@ -130,6 +130,6 @@ public class AuthValidationFilter implements GlobalFilter, Ordered {
             return exchange.getResponse().setComplete();
         }
     }
-//update validator
+//update validato
 
 }
