@@ -8,18 +8,14 @@ import com.imspos.product_service.payload.dto.CategoryListDTO;
 import com.imspos.product_service.payload.request.CreateCategoryRequest;
 import com.imspos.product_service.payload.request.CreateProductRequest;
 import com.imspos.product_service.payload.request.CreateVariantRequest;
-import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public interface ProductService {
+public interface CategoryService {
 
+    public Category createCategory(CreateCategoryRequest createCategoryRequest, AuditableUser user);
 
-    public Variant createVariant(CreateVariantRequest createVariantRequest, AuditableUser user);
-
-    public Product createProduct(CreateProductRequest createProductRequest, AuditableUser user);
-
-
+    public List<CategoryListDTO> getAllCategory();
 }

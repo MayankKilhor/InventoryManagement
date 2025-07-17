@@ -4,6 +4,7 @@ import com.imspos.product_service.model.Category;
 import com.imspos.product_service.model.Product;
 import com.imspos.product_service.model.Variant;
 import com.imspos.product_service.payload.dto.AuditableUser;
+import com.imspos.product_service.payload.dto.CategoryListDTO;
 import com.imspos.product_service.payload.request.CreateCategoryRequest;
 import com.imspos.product_service.payload.request.CreateProductRequest;
 import com.imspos.product_service.payload.request.CreateVariantRequest;
@@ -13,6 +14,9 @@ import com.imspos.product_service.repository.VariantRepository;
 import com.imspos.product_service.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -25,20 +29,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductRepository productRepository;
-
-    public Category createCategory(CreateCategoryRequest createCategoryRequest, AuditableUser user){
-        Category category = Category.builder()
-                .name(createCategoryRequest.getName())
-                .description(createCategoryRequest.getDescription())
-                .build();
-
-        category.setCreatedBy(user);
-        category.setUpdatedBy(user);
-
-        categoryRepository.save(category);
-
-        return category;
-    }
 
     public Variant createVariant(CreateVariantRequest createVariantRequest, AuditableUser user){
         Product product = productRepository.findById(createVariantRequest.getProductId())
@@ -80,7 +70,6 @@ public class ProductServiceImpl implements ProductService {
 
         return productRepository.save(product);
     }
-
 
 
 }

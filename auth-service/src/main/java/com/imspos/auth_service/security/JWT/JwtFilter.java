@@ -126,9 +126,9 @@ public class JwtFilter extends OncePerRequestFilter {
 	 * Add your public endpoints here (login, register, etc.)
 	 */
 	private boolean isPublicEndpoint(String path) {
-		return path.startsWith("/api/auth/login") ||
-				path.startsWith("/api/auth/register") ||
-				path.startsWith("/api/auth/public") ||
+		return path.startsWith("/auth/login") ||
+				path.startsWith("/auth/register") ||
+				path.startsWith("/auth/public") ||
 				path.startsWith("/actuator/health") ||
 				isSwaggerEndpoint(path);
 	}
